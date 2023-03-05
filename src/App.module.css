@@ -1,0 +1,67 @@
+.celticCross {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bodyCards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20%;
+}
+
+.bodyCards > div {
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.celticCross > div:first-child {
+  width: 70%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centerCard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centerTopCard {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-80deg);
+}
+
+.topCard {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 12%;
+}
+
+.rightCard {
+  position: absolute;
+  top: 39%;
+  right: 10%;
+}
+
+.bottomCard {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 12%;
+}
+
+.leftCard {
+  position: absolute;
+  top: 39%;
+  left: 10%;
+}
+
