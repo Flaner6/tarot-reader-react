@@ -1,7 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import styles from './TarotCard.module.css';
 
-function TarotCard(props) {
+type TarotCardProps = {
+  imagePath: string;
+  cardName: string;
+}
+
+export const TarotCard = (props: TarotCardProps) => {
   return (
     <div>
       <img src={props.imagePath} alt={props.cardName} className={styles.image}/>
@@ -9,4 +14,3 @@ function TarotCard(props) {
   );
 }
 
-export default TarotCard;
