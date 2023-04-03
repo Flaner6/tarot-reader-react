@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { TarotCard } from '../TarotCard/TarotCard';
-import { StartButton } from '../UserPrompt/UserPrompt'
+import { StartButton } from '../StartButton/StartButton'
 import styles from './TarotBoard.module.css';
 import  { cardImages }  from '../AllCards';
+import { RootState } from '../../store/store';
+import { startReading } from '../../store/userPrompt/userPromptSlice';
 
 
 export const TarotBoard = () => {
@@ -10,13 +13,15 @@ export const TarotBoard = () => {
     .sort(() => Math.random() - 0.5)
     .slice(0, 10);
 
+  const name = useSelector((state: RootState) => state.userPrompt.name);
+  const startedReading = useSelector((state: RootState) => state.userPrompt.startedReading);
+  const dispatch = useDispatch();
 
-  const [name, setName] = useState('');
+  const handleStartReading = () => {
+    dispatch(startReading());
+  };
 
-  const handleButtonClick = (name: string) => {
-    setName(name);
-  }
-
+  
 
   const crossSectionPositions = [
     { className: styles.centerCard, index: 0 },
@@ -58,8 +63,9 @@ export const TarotBoard = () => {
 
   return (
     <div>
-      {!name && <StartButton onButtonClick={handleButtonClick} />}
-      {name && (
+      <div>Welcome {name} </div>
+      {!name && !startedReading && <StartButton onButtonClick={handleStartReading} />}
+      {name && startedReading && (
         <div className={styles.celticCross}>
           <div>
             {crossSection}
@@ -67,7 +73,7 @@ export const TarotBoard = () => {
           <div className={styles.bodyCards}>
             {bodyCards}
           </div>
-        </div>
+      </div>
       )}
     </div>
   );
