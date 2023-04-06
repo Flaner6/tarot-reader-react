@@ -1,27 +1,38 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TarotCard } from '../TarotCard/TarotCard';
-import { StartButton } from '../StartButton/StartButton'
+import { StartButton } from '../StartButton/StartButton';
 import styles from './TarotBoard.module.css';
+import { Modal } from '../Modal/Modal';
 import  { cardImages }  from '../AllCards';
 import { RootState } from '../../store/store';
 import { startReading } from '../../store/userPrompt/userPromptSlice';
+import { showMessage, hideMessage } from '../../store/modal/modalSlice';
 
+type TarotBoardProps = {};
 
-export const TarotBoard = () => {
+export const TarotBoard: React.FC<TarotBoardProps> = () => {
   const randomCardNames = Object.keys(cardImages)
     .sort(() => Math.random() - 0.5)
     .slice(0, 10);
 
-  const name = useSelector((state: RootState) => state.userPrompt.name);
-  const startedReading = useSelector((state: RootState) => state.userPrompt.startedReading);
+
+  const { name, startedReading } = useSelector((state: RootState) => state.userPrompt);
+    
+    
   const dispatch = useDispatch();
 
   const handleStartReading = () => {
     dispatch(startReading());
   };
 
-  
+  const handleMouseEnter = (cardName: string) => {
+    dispatch(showMessage(cardName));
+  };
+
+  const handleMouseLeave = () => {
+    dispatch(hideMessage());
+  };
 
   const crossSectionPositions = [
     { className: styles.centerCard, index: 0 },
@@ -45,7 +56,13 @@ export const TarotBoard = () => {
     const isReversed = Math.random() < 0.5;
     return (
       <div className={position.className} key={cardName}>
-        <TarotCard imagePath={imagePath} cardName={cardName} isReversed={isReversed} />
+        <TarotCard
+          imagePath={imagePath}
+          cardName={cardName}
+          isReversed={isReversed}
+          onMouseEnter={() => handleMouseEnter(cardName)}
+          onMouseLeave={handleMouseLeave}
+        />
       </div>
     );
   });
@@ -56,25 +73,37 @@ export const TarotBoard = () => {
     const isReversed = Math.random() < 0.5;
     return (
       <div className={position.className} key={cardName}>
-        <TarotCard imagePath={imagePath} cardName={cardName} isReversed={isReversed} />
+        <TarotCard
+          imagePath={imagePath}
+          cardName={cardName}
+          isReversed={isReversed}
+          onMouseEnter={() => handleMouseEnter(cardName)}
+          onMouseLeave={handleMouseLeave}
+        />
       </div>
     );
   });
 
+
+  
+
   return (
     <div>
-      <div>Welcome {name} </div>
       {!name && !startedReading && <StartButton onButtonClick={handleStartReading} />}
       {name && startedReading && (
-        <div className={styles.celticCross}>
-          <div>
-            {crossSection}
+        <>
+          <div>Welcome {name} </div>
+          <div className={styles.celticCross}>
+            <div>
+              {crossSection}
+            </div>
+            <div className={styles.bodyCards}>
+              {bodyCards}
+            </div>
           </div>
-          <div className={styles.bodyCards}>
-            {bodyCards}
-          </div>
-      </div>
+        </>
       )}
+      <Modal />
     </div>
   );
 };

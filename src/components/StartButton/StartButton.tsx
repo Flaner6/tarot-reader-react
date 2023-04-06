@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setName, startReading } from '../../store/userPrompt/userPromptSlice';
-import { userPrompt } from "../../store/store"
+// import { RootState } from "../../store/store"
 
 interface StartButtonProps {
   onButtonClick: () => void;
@@ -9,7 +9,7 @@ interface StartButtonProps {
 
 export const StartButton = ({ onButtonClick }: StartButtonProps) => {
   const dispatch = useDispatch();
-  const name = useSelector((state: userPrompt) => state.userPrompt.name);
+
   const [localName, setLocalName] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
