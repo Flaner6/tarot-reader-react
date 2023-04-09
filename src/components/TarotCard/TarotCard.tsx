@@ -3,6 +3,7 @@ import styles from './TarotCard.module.css';
 import { useDispatch } from 'react-redux';
 import { showMessage, hideMessage } from '../../store/modal/modalSlice';
 
+
 type TarotCardProps = {
   imagePath: string;
   cardName: string;
