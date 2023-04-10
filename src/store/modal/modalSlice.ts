@@ -17,16 +17,17 @@ export const modalSlice = createSlice({
   reducers: {
     showMessage: (state, action: PayloadAction<string>) => {
       state.message = action.payload;
+    },
+    showModal: (state) => {
       state.isVisible = true;
     },
-    hideMessage: (state) => {
-      state.message = '';
+    hideModal: (state) => {
       state.isVisible = false;
     },
   },
 });
 
-export const { showMessage, hideMessage } = modalSlice.actions;
+export const { showMessage, showModal, hideModal } = modalSlice.actions;
 
 export const selectMessage = (state: RootState) => state.modal.message;
 export const selectIsVisible = (state: RootState) => state.modal.isVisible;

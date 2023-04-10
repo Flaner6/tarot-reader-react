@@ -7,7 +7,7 @@ import { Modal } from '../Modal/Modal';
 import  { cardImages }  from '../AllCards';
 import { RootState } from '../../store/store';
 import { startReading } from '../../store/userPrompt/userPromptSlice';
-import { showMessage, hideMessage } from '../../store/modal/modalSlice';
+
 
 type TarotBoardProps = {};
 
@@ -26,13 +26,6 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
     dispatch(startReading());
   };
 
-  const handleMouseEnter = (cardName: string) => {
-    dispatch(showMessage(cardName));
-  };
-
-  const handleMouseLeave = () => {
-    dispatch(hideMessage());
-  };
 
   const crossSectionPositions = [
     { className: styles.centerCard, index: 0 },
@@ -60,8 +53,6 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
           imagePath={imagePath}
           cardName={cardName}
           isReversed={isReversed}
-          onMouseEnter={() => handleMouseEnter(cardName)}
-          onMouseLeave={handleMouseLeave}
         />
       </div>
     );
@@ -77,8 +68,6 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
           imagePath={imagePath}
           cardName={cardName}
           isReversed={isReversed}
-          onMouseEnter={() => handleMouseEnter(cardName)}
-          onMouseLeave={handleMouseLeave}
         />
       </div>
     );

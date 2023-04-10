@@ -6,11 +6,8 @@ import { selectMessage, selectIsVisible } from '../../store/modal/modalSlice';
 
 
 export const Modal = () => {
-
   const message = useSelector(selectMessage);
   const isVisible = useSelector(selectIsVisible);
-
-
 
   return (
     <>

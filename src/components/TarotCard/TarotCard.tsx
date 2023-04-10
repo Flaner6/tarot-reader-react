@@ -1,40 +1,35 @@
 import * as React from 'react';
 import styles from './TarotCard.module.css';
 import { useDispatch } from 'react-redux';
-import { showMessage, hideMessage } from '../../store/modal/modalSlice';
-
+import { showMessage, showModal, hideModal } from '../../store/modal/modalSlice';
 
 type TarotCardProps = {
   imagePath: string;
   cardName: string;
   isReversed?: boolean;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
-}
+};
 
-export const TarotCard = ({ imagePath, cardName, isReversed, onMouseEnter, onMouseLeave }: TarotCardProps) => {
+export const TarotCard = ({ imagePath, cardName, isReversed }: TarotCardProps) => {
   const imageClass = isReversed ? `${styles.image} ${styles.reversed}` : styles.image;
   const dispatch = useDispatch();
+  let timeout: NodeJS.Timeout;
 
-  const handleMouseEnter = () => {
+  const handleMouseOver = () => {
     dispatch(showMessage(cardName));
-    if (onMouseEnter) {
-      onMouseEnter();
-    }
+    console.log('entered');
+    dispatch(showModal());
   };
 
-  const handleMouseLeave = () => {
-    dispatch(hideMessage());
-    if (onMouseLeave) {
-      onMouseLeave();
-    }
+  const handleMouseOut = () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      dispatch(hideModal());
+    }, 500);
   };
 
   return (
-    <div>
-      <img src={imagePath} alt={cardName} className={imageClass}
-        onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      <img src={imagePath} alt={cardName} className={imageClass} />
     </div>
   );
-}
-
+};
