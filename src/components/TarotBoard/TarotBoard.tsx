@@ -4,7 +4,7 @@ import { TarotCard } from '../TarotCard/TarotCard';
 import { StartButton } from '../StartButton/StartButton';
 import styles from './TarotBoard.module.css';
 import { Modal } from '../Modal/Modal';
-import  { cardImages }  from '../AllCards';
+import cardImages from '../AllCards';
 import { RootState } from '../../store/store';
 import { startReading } from '../../store/userPrompt/userPromptSlice';
 
@@ -30,10 +30,10 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
   const crossSectionPositions = [
     { className: styles.centerCard, index: 0 },
     { className: styles.centerTopCard, index: 1 },
-    { className: styles.topCard, index: 4 },
     { className: styles.rightCard, index: 2 },
-    { className: styles.bottomCard, index: 5 },
     { className: styles.leftCard, index: 3 },
+    { className: styles.topCard, index: 4 },
+    { className: styles.bottomCard, index: 5 },
   ];
 
   const bodyPositions = [
@@ -72,9 +72,6 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
       </div>
     );
   });
-
-
-  
 
   return (
     <div>
