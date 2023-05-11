@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { TarotCard } from '../TarotCard/TarotCard';
 import { StartButton } from '../StartButton/StartButton';
 import styles from './TarotBoard.module.css';
-import { Modal } from '../Modal/Modal';
-import cardImages from '../AllCards';
+
 import { RootState } from '../../store/store';
 import { startReading } from '../../store/userPrompt/userPromptSlice';
 
 
 type TarotBoardProps = {};
+const cardImages = require('../AllCards.json');
 
 export const TarotBoard: React.FC<TarotBoardProps> = () => {
   const randomCardNames = Object.keys(cardImages)
@@ -89,7 +89,7 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
           </div>
         </>
       )}
-      <Modal />
+
     </div>
   );
 };
