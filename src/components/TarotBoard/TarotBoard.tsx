@@ -74,10 +74,10 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
   });
 
   return (
-    <div>
+    <div className={styles.board}>
       {!name && !startedReading && <StartButton onButtonClick={handleStartReading} />}
       {name && startedReading && (
-        <div className={styles.board}>
+        <div >
           <div>Welcome {name} </div>
           <div className={styles.celticCross}>
             <div>

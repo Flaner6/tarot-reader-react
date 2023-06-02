@@ -1,5 +1,7 @@
 .board{
   background-color: rgb(176, 31, 187);
+  height: 100vh;
+  width: 100vw;
 }
 
 .celticCross {
@@ -32,31 +34,36 @@
     position: absolute;
     left: 50%;
     top: 50%;
+    width: 1px; 
+    height: 1px; 
   }
 
   .centerCard img {
-    transform: translate(-50%, -50%);
+    transform: translate(0%, -50%);
   }
   
   .centerTopCard {
     position: absolute;
-    z-index: 10;
+    /* z-index: 10; */
     left: 50%;
     top: 50%;
+    width: 1px; 
+    height: 1px; 
+ 
   }
 
   .centerTopCard img {
-    transform: translate(-50%, -50%) rotate(-80deg);
+    transform: translate(0%, -50%) rotate(-80deg);
   }
   
   .topCard {
     position: absolute;
     left: 50%;
-    top: 12%;
+    top: 1%;
   }
 
   .topCard img{
-    transform: translateX(-50%);
+    /* transform: translateX(-50%); */
   }
   
   .rightCard {
@@ -68,16 +75,16 @@
   .bottomCard {
     position: absolute;
     left: 50%;
-    bottom: 12%;
+    bottom: 1%;
   }
 
   .bottomCard img {
-    transform: translateX(-50%);
+    /* transform: translateX(-50%); */
   }
   
   .leftCard {
     position: absolute;
     top: 39%;
-    left: 10%;
+    left: 20%;
   }
   
