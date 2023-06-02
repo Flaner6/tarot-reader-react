@@ -77,7 +77,7 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
     <div>
       {!name && !startedReading && <StartButton onButtonClick={handleStartReading} />}
       {name && startedReading && (
-        <>
+        <div className={styles.board}>
           <div>Welcome {name} </div>
           <div className={styles.celticCross}>
             <div>
@@ -87,7 +87,7 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
               {bodyCards}
             </div>
           </div>
-        </>
+        </div>
       )}
 
     </div>
