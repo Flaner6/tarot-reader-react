@@ -1,14 +1,14 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { TarotCard } from '../TarotCard/TarotCard';
 import { StartButton } from '../StartButton/StartButton';
 import styles from './TarotBoard.module.css';
-
 import { RootState } from '../../store/store';
 import { startReading } from '../../store/userPrompt/userPromptSlice';
 
-
-type TarotBoardProps = {};
+type TarotBoardProps = object;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const cardImages = require('../AllCards.json');
 
 export const TarotBoard: React.FC<TarotBoardProps> = () => {
@@ -16,16 +16,15 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
     .sort(() => Math.random() - 0.5)
     .slice(0, 10);
 
+  const { name, startedReading } = useSelector(
+    (state: RootState) => state.userPrompt
+  );
 
-  const { name, startedReading } = useSelector((state: RootState) => state.userPrompt);
-    
-    
   const dispatch = useDispatch();
 
   const handleStartReading = () => {
     dispatch(startReading());
   };
-
 
   const crossSectionPositions = [
     { className: styles.centerCard, index: 0 },
@@ -75,21 +74,18 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
 
   return (
     <div className={styles.board}>
-      {!name && !startedReading && <StartButton onButtonClick={handleStartReading} />}
+      {!name && !startedReading && (
+        <StartButton onButtonClick={handleStartReading} />
+      )}
       {name && startedReading && (
-        <div >
+        <div>
           <div>Welcome {name} </div>
           <div className={styles.celticCross}>
-            <div>
-              {crossSection}
-            </div>
-            <div className={styles.bodyCards}>
-              {bodyCards}
-            </div>
+            <div>{crossSection}</div>
+            <div className={styles.bodyCards}>{bodyCards}</div>
           </div>
         </div>
       )}
-
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import userPromptReducer from './userPrompt/userPromptSlice';
 import modalReducer from './modal/modalSlice';
 
