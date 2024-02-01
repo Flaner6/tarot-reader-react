@@ -5,9 +5,9 @@ import styles from './TarotCard.module.css';
 import { Tooltip } from '../Tooltip/Tooltip';
 import {
   showMessage,
-  showModal,
-  hideModal,
-} from '../../store/modal/modalSlice';
+  showTooltip,
+  hideTooltip,
+} from '../../store/tooltip/tooltipSlice';
 
 type TarotCardProps = {
   imagePath: string;
@@ -30,12 +30,12 @@ export const TarotCard = ({
   const handleMouseEnter = () => {
     setIsTooltipVisible(true);
     dispatch(showMessage(cardName));
-    dispatch(showModal());
+    dispatch(showTooltip());
   };
 
   const handleMouseLeave = () => {
     setIsTooltipVisible(false);
-    dispatch(hideModal());
+    dispatch(hideTooltip());
   };
 
   return (

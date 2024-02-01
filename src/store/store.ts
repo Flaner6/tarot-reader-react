@@ -1,15 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import userPromptReducer from './userPrompt/userPromptSlice';
-import modalReducer from './modal/modalSlice';
+import tooltipReducer from './tooltip/tooltipSlice';
 
 export const store = configureStore({
   reducer: {
     userPrompt: userPromptReducer,
-    modal: modalReducer,
+    tooltip: tooltipReducer,
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export default store
+export default store;
