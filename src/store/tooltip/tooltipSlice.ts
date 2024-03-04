@@ -3,34 +3,25 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 
 interface TooltipState {
-  message: string;
-  isVisible: boolean;
+  cardName: string;
 }
 
 const initialState: TooltipState = {
-  message: '',
-  isVisible: false,
+  cardName: '',
 };
 
 export const tooltipSlice = createSlice({
   name: 'tooltip',
   initialState,
   reducers: {
-    showMessage: (state, action: PayloadAction<string>) => {
-      state.message = action.payload;
-    },
-    showTooltip: (state) => {
-      state.isVisible = true;
-    },
-    hideTooltip: (state) => {
-      state.isVisible = false;
+    setCardName: (state, action: PayloadAction<string>) => {
+      state.cardName = action.payload;
     },
   },
 });
 
-export const { showMessage, showTooltip, hideTooltip } = tooltipSlice.actions;
+export const { setCardName } = tooltipSlice.actions;
 
-export const selectMessage = (state: RootState) => state.tooltip.message;
-export const selectIsVisible = (state: RootState) => state.tooltip.isVisible;
+export const selectMessage = (state: RootState) => state.tooltip.cardName;
 
 export default tooltipSlice.reducer;

@@ -3,23 +3,15 @@ import { useDispatch } from 'react-redux';
 
 import styles from './TarotCard.module.css';
 import { Tooltip } from '../Tooltip/Tooltip';
-import {
-  showMessage,
-  showTooltip,
-  hideTooltip,
-} from '../../store/tooltip/tooltipSlice';
+import { setCardName } from '../../store/tooltip/tooltipSlice';
 
 type TarotCardProps = {
   imagePath: string;
-  cardName: string;
+  name: string;
   isReversed?: boolean;
 };
 
-export const TarotCard = ({
-  imagePath,
-  cardName,
-  isReversed,
-}: TarotCardProps) => {
+export const TarotCard = ({ imagePath, name, isReversed }: TarotCardProps) => {
   const imageClass = isReversed
     ? `${styles.image} ${styles.reversed}`
     : styles.image;
@@ -29,19 +21,17 @@ export const TarotCard = ({
 
   const handleMouseEnter = () => {
     setIsTooltipVisible(true);
-    dispatch(showMessage(cardName));
-    dispatch(showTooltip());
+    dispatch(setCardName(name));
   };
 
   const handleMouseLeave = () => {
     setIsTooltipVisible(false);
-    dispatch(hideTooltip());
   };
 
   return (
     <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <img src={imagePath} alt={cardName} className={imageClass} />
-      {isTooltipVisible && <Tooltip message={cardName} />}
+      <img src={imagePath} alt={name} className={imageClass} />
+      {isTooltipVisible && <Tooltip name={name} />}
     </div>
   );
 };

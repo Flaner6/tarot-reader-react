@@ -50,7 +50,7 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
       <div className={position.className} key={cardName}>
         <TarotCard
           imagePath={imagePath}
-          cardName={cardName}
+          name={cardName}
           isReversed={isReversed}
         />
       </div>
@@ -65,7 +65,7 @@ export const TarotBoard: React.FC<TarotBoardProps> = () => {
       <div className={position.className} key={cardName}>
         <TarotCard
           imagePath={imagePath}
-          cardName={cardName}
+          name={cardName}
           isReversed={isReversed}
         />
       </div>

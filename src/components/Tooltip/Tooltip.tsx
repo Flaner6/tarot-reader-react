@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import styles from './Tooltip.module.css';
 
 type TooltipProps = {
-  message: string;
+  name: string;
 };
 
-export const Tooltip = ({ message }: TooltipProps) => {
+export const Tooltip = ({ name }: TooltipProps) => {
   const [position, setPosition] = useState<{ x: number; y: number }>({
-    x: 0,
-    y: 0,
+    x: -100,
+    y: -100,
   });
 
   useEffect(() => {
@@ -29,8 +29,7 @@ export const Tooltip = ({ message }: TooltipProps) => {
       className={styles.tooltip}
       style={{ left: position.x, top: position.y }}
     >
-      <div className={styles.tooltipArrow}></div>
-      <div className={styles.tooltipMessage}>{message}</div>
+      <div className={styles.tooltipMessage}>{name}</div>
     </div>
   );
 };
